@@ -1,0 +1,14 @@
+.contact-info, .contact-info__top--right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-info__top {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.avatar {
+    border-radius: 50%;
+}

@@ -1,0 +1,19 @@
+.attractions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.attractions__list {
+    display: grid;    
+    gap: 12px;
+}
+
+.attraction__item {    
+    gap: 12px;
+}
+
+.attraction__link {
+  cursor: pointer;
+  color: black;
+}

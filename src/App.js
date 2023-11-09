@@ -1,3 +1,17 @@
+import Page from "./component/page";
+import Header from "./component/header";
+import Title from "./component/title";
+import Photo from "./component/photo";
+import Price from "./component/price";
+import RoomList from "./component/room-list";
+import Description from "./component/description";
+import PropertyDetails from "./component/property-details";
+import Amenities from "./component/amenities";
+import ContactInfo from "./component/contact-info";
+import AdditionalProperties from "./component/additional-properties";
+import ReviewList from "./component/review-list";
+import NearbyAttractions from "./component/nearby-attractions";
+
 function App() {
   const data = {
     listing_name: "Іст-Сайд Біл",
@@ -92,7 +106,7 @@ function App() {
         "Public buses and taxis available within walking distance.",
       host_languages: ["English", "Spanish"],
       special_offers: "10% discount for bookings of 7 nights or more.",
-      "check-in_instructions":
+      check_in_instructions:
         "Check-in time is 3:00 PM. Please contact us in advance with your estimated arrival time.",
     },
 
@@ -144,7 +158,68 @@ function App() {
     ],
   };
 
-  return <div>Hello World</div>;
+  return (
+    <Page>
+      <Header />
+      <Title
+        title={data.listing_name}
+        rating={data.reviews_summary.average_rating}
+        review={data.reviews_summary.total_reviews}
+        city={data.location.city}
+        country={data.location.country}
+        superhost={data.superhost}
+      />
+      <Photo src={data.image} name={data.listing_name} />
+      <Price
+        price={data.price.original_price}
+        discount={data.price.discounted_price}
+        currency={data.price.currency}
+        cleaning={data.price.cleaning_fee}
+        service={data.price.service_fee}
+        checkin={data.availability.checkin_date}
+        checkout={data.availability.checkout_date}
+      />
+      <RoomList list={data.roomTypes} />
+      <Description title="Опис" children={data.description} />
+      <PropertyDetails
+        guests={data.property_details.guests}
+        bedrooms={data.property_details.bedrooms}
+        beds={data.property_details.beds}
+        baths={data.property_details.baths}
+      ></PropertyDetails>
+      <Description title="Про сусідів" children={data.neighborhood_info} />
+      <Amenities
+        pool={data.amenities.hasPool}
+        gym={data.amenities.hasGym}
+        freeBreakfast={data.amenities.hasFreeBreakfast}
+        freeWifi={data.amenities.hasFreeWiFi}
+        parking={data.amenities.hasParking}
+        petsAllowed={data.amenities.hasPetsAllowed}
+        airportShuttle={data.amenities.hasAirportShuttle}
+        conciergeService={data.amenities.hasConciergeService}
+        roomService={data.amenities.hasRoomService}
+        childFriendly={data.amenities.hasChildFriendly}
+      />
+      <ContactInfo
+        owner={data.contact_info.name}
+        avatar={data.contact_info.image}
+        responseRate={data.contact_info.response_rate}
+        responseTime={data.contact_info.response_time}
+        aboutMe={data.contact_info.info}
+        phone={data.contact_info.phone}
+      />
+      <AdditionalProperties
+        rules={data.additional_properties.house_rules}
+        cancellationPolicy={data.additional_properties.cancellation_policy}
+        localTransportation={data.additional_properties.local_transportation}
+        languages={data.additional_properties.host_languages}
+        specialOffers={data.additional_properties.special_offers}
+        checkInInstraction={data.additional_properties.check_in_instructions}
+      />
+      <ReviewList list={data.guestReviews} />
+      <NearbyAttractions list={data.nearbyAttractions} />
+    </Page>
+  );
 }
 
 export default App;
